@@ -102,6 +102,158 @@
           }
         }
       }
+    },
+    "fire-app": {
+      "root": "apps/fire-app",
+      "sourceRoot": "apps/fire-app/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@simondotm/nx-firebase:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/fire-app",
+            "main": "apps/fire-app/src/index.ts",
+            "tsConfig": "apps/fire-app/tsconfig.app.json",
+            "packageJson": "apps/fire-app/package.json",
+            "assets": [
+              "apps/fire-app/*.md",
+              "apps/fire-app/.runtimeconfig.json"
+            ]
+          }
+        },
+        "deploy": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "firebase deploy --config firebase.fire-app.json"
+          }
+        },
+        "getconfig": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "firebase functions:config:get --config firebase.fire-app.json > apps/fire-app/.runtimeconfig.json"
+          }
+        },
+        "emulate": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "firebase emulators:start --config firebase.fire-app.json"
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "nx run fire-app:build --with-deps && nx run fire-app:build --watch"
+              },
+              {
+                "command": "nx run fire-app:emulate"
+              }
+            ],
+            "parallel": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/fire-app/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/fire-app"],
+          "options": {
+            "jestConfig": "apps/fire-app/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "foobar": {
+      "root": "apps/foobar",
+      "sourceRoot": "apps/foobar/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@simondotm/nx-firebase:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/foobar",
+            "main": "apps/foobar/src/index.ts",
+            "tsConfig": "apps/foobar/tsconfig.app.json",
+            "packageJson": "apps/foobar/package.json",
+            "assets": ["apps/foobar/*.md", "apps/foobar/.runtimeconfig.json"]
+          }
+        },
+        "deploy": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "firebase deploy --config firebase.foobar.json"
+          }
+        },
+        "getconfig": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "firebase functions:config:get --config firebase.foobar.json > apps/foobar/.runtimeconfig.json"
+          }
+        },
+        "emulate": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "firebase emulators:start --config firebase.foobar.json"
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "nx run foobar:build --with-deps && nx run foobar:build --watch"
+              },
+              {
+                "command": "nx run foobar:emulate"
+              }
+            ],
+            "parallel": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/foobar/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/foobar"],
+          "options": {
+            "jestConfig": "apps/foobar/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "types-types": {
+      "root": "libs/types",
+      "sourceRoot": "libs/types/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/types/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/types"],
+          "options": {
+            "jestConfig": "libs/types/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

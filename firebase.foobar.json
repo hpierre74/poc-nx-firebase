@@ -1,0 +1,43 @@
+{
+  "database": {
+    "rules": "apps/foobar/database.rules.json"
+  },
+  "firestore": {
+    "rules": "apps/foobar/firestore.rules",
+    "indexes": "apps/foobar/firestore.indexes.json"
+  },
+  "hosting": {
+    "public": "apps/foobar/public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "storage": {
+    "rules": "apps/foobar/storage.rules"
+  },
+  "functions": {
+    "predeploy": ["npx nx build foobar --with-deps", "npx nx lint foobar"],
+    "source": "dist/apps/foobar"
+  },
+  "emulators": {
+    "functions": {
+      "port": 5001
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "hosting": {
+      "port": 5000
+    },
+    "auth": {
+      "port": "9099"
+    },
+    "pubsub": {
+      "port": "8085"
+    }
+  }
+}

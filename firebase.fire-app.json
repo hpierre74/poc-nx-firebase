@@ -1,0 +1,43 @@
+{
+  "database": {
+    "rules": "apps/fire-app/database.rules.json"
+  },
+  "firestore": {
+    "rules": "apps/fire-app/firestore.rules",
+    "indexes": "apps/fire-app/firestore.indexes.json"
+  },
+  "hosting": {
+    "public": "apps/fire-app/public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "storage": {
+    "rules": "apps/fire-app/storage.rules"
+  },
+  "functions": {
+    "predeploy": ["npx nx build fire-app --with-deps", "npx nx lint fire-app"],
+    "source": "dist/apps/fire-app"
+  },
+  "emulators": {
+    "functions": {
+      "port": 5001
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "hosting": {
+      "port": 5000
+    },
+    "auth": {
+      "port": "9099"
+    },
+    "pubsub": {
+      "port": "8085"
+    }
+  }
+}

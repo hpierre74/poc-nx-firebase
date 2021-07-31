@@ -33,6 +33,15 @@
     "base-app-e2e": {
       "tags": [],
       "implicitDependencies": ["base-app"]
+    },
+    "fire-app": {
+      "tags": []
+    },
+    "foobar": {
+      "tags": []
+    },
+    "types-types": {
+      "tags": ["types"]
     }
   }
 }
