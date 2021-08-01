@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "dev": {
+      "implementation": "./executor",
+      "schema": "./schema.json",
+      "description": "Runs `dev` (to test executors out)."
+    }
+  }
+}

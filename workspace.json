@@ -1,11 +1,24 @@
 {
   "version": 2,
   "projects": {
+    "platform": {
+      "targets": {
+        "build": {},
+        "serve": {},
+        "lint": {},
+        "dev": {
+          "executor": "./tools/executors/dev:dev"
+        }
+      }
+    },
     "base-app": {
       "root": "apps/base-app",
       "sourceRoot": "apps/base-app/src",
       "projectType": "application",
       "targets": {
+        "dev": {
+          "executor": "./tools/executors/dev:dev"
+        },
         "build": {
           "executor": "@nrwl/web:build",
           "outputs": ["{options.outputPath}"],
