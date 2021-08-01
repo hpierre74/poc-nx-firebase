@@ -1,16 +1,6 @@
 {
   "version": 2,
   "projects": {
-    "platform": {
-      "targets": {
-        "build": {},
-        "serve": {},
-        "lint": {},
-        "dev": {
-          "executor": "./tools/executors/dev:dev"
-        }
-      }
-    },
     "base-app": {
       "root": "apps/base-app",
       "sourceRoot": "apps/base-app/src",
