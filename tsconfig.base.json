@@ -16,6 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@poc-nx-firebase/react-xtend": ["libs/react-xtend/src/index.ts"],
       "fire-app-types": ["libs/types/src/index.ts"]
     }
   },

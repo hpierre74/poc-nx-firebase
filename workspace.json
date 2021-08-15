@@ -234,6 +234,74 @@
         }
       }
     },
+    "react-xtend": {
+      "root": "libs/react-xtend",
+      "sourceRoot": "libs/react-xtend/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/react-xtend/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/react-xtend"],
+          "options": {
+            "jestConfig": "libs/react-xtend/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/react-xtend",
+            "tsConfig": "libs/react-xtend/tsconfig.lib.json",
+            "packageJson": "libs/react-xtend/package.json",
+            "main": "libs/react-xtend/src/index.ts",
+            "assets": [
+              "libs/react-xtend/*.md",
+              {
+                "input": "./libs/react-xtend/src",
+                "glob": "**/!(*.ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./libs/react-xtend/src",
+                "glob": "**/*.d.ts",
+                "output": "./src"
+              },
+              {
+                "input": "./libs/react-xtend",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./libs/react-xtend",
+                "glob": "executors.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "react-xtend-e2e": {
+      "root": "apps/react-xtend-e2e",
+      "projectType": "application",
+      "sourceRoot": "apps/react-xtend-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "react-xtend:build",
+            "jestConfig": "apps/react-xtend-e2e/jest.config.js"
+          }
+        }
+      }
+    },
     "types-types": {
       "root": "libs/types",
       "sourceRoot": "libs/types/src",
