@@ -40,6 +40,13 @@
     "foobar": {
       "tags": []
     },
+    "react-xtend": {
+      "tags": []
+    },
+    "react-xtend-e2e": {
+      "tags": [],
+      "implicitDependencies": ["react-xtend"]
+    },
     "types-types": {
       "tags": ["types"]
     }
